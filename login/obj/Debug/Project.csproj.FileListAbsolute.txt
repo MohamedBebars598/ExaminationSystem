@@ -1,0 +1,15 @@
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\bin\Debug\login.exe.config
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\bin\Debug\login.exe
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\bin\Debug\login.pdb
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\bin\Debug\EntityFramework.dll
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\bin\Debug\EntityFramework.xml
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\Project.csproj.AssemblyReference.cache
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\login.Form1.resources
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\login.Properties.Resources.resources
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\Project.csproj.GenerateResource.cache
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\Project.csproj.CoreCompileInputs.cache
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\Project.csproj.CopyComplete
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\login.exe
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\login.pdb
