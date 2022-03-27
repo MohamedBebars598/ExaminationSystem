@@ -165,6 +165,12 @@
     <Compile Include="Student.cs">
       <DependentUpon>Exam.tt</DependentUpon>
     </Compile>
+    <Compile Include="StudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentForm.Designer.cs">
+      <DependentUpon>StudentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StudentReport_Result.cs">
       <DependentUpon>Exam.tt</DependentUpon>
     </Compile>
@@ -192,6 +198,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="StudentForm.resx">
+      <DependentUpon>StudentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Exam.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Exam.Designer.cs</LastGenOutput>

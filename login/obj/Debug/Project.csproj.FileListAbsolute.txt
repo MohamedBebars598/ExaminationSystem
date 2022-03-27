@@ -13,3 +13,4 @@ C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\Project.csp
 C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\Project.csproj.CopyComplete
 C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\login.exe
 C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\login.pdb
+C:\Users\Doha\Desktop\ITI\Sql-Server\Project\project\login\obj\Debug\login.StudentForm.resources

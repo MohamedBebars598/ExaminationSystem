@@ -344,10 +344,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="checkUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="userName" Type="varchar" Mode="In" />
-    <Parameter Name="userPassword" Type="int" Mode="In" />
-  </Function>
   <Function Name="Course_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="crs_id" Type="int" Mode="In" />
     <Parameter Name="crs_name" Type="varchar" Mode="In" />
@@ -428,16 +424,19 @@
   <Function Name="examCorrection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="examID" Type="int" Mode="In" />
     <Parameter Name="studID" Type="int" Mode="In" />
-    <Parameter Name="sum" Type="int" Mode="InOut" />
   </Function>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="generateExamByCourseID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cId" Type="int" Mode="In" />
+    <Parameter Name="insId" Type="int" Mode="In" />
+    <Parameter Name="StdId" Type="int" Mode="In" />
     <Parameter Name="numOfTrueFalse" Type="int" Mode="In" />
     <Parameter Name="numOfMCQ" Type="int" Mode="In" />
   </Function>
   <Function Name="GenerateExameByCourseName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Course" Type="varchar" Mode="In" />
+    <Parameter Name="Ins_ID" Type="int" Mode="In" />
+    <Parameter Name="Std_ID" Type="int" Mode="In" />
     <Parameter Name="TFNum" Type="int" Mode="In" />
     <Parameter Name="MCQNum" Type="int" Mode="In" />
   </Function>
@@ -682,6 +681,10 @@
   <Function Name="userSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="name" Type="varchar" Mode="In" />
     <Parameter Name="star" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Validation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userName" Type="varchar" Mode="In" />
+    <Parameter Name="userPassword" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="examModelStoreContainer">
     <EntitySet Name="Choice" EntityType="Self.Choice" Schema="dbo" store:Type="Tables" />

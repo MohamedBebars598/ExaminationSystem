@@ -349,10 +349,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="checkUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="userName" Type="varchar" Mode="In" />
-          <Parameter Name="userPassword" Type="int" Mode="In" />
-        </Function>
         <Function Name="Course_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="crs_id" Type="int" Mode="In" />
           <Parameter Name="crs_name" Type="varchar" Mode="In" />
@@ -433,16 +429,19 @@
         <Function Name="examCorrection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="examID" Type="int" Mode="In" />
           <Parameter Name="studID" Type="int" Mode="In" />
-          <Parameter Name="sum" Type="int" Mode="InOut" />
         </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="generateExamByCourseID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cId" Type="int" Mode="In" />
+          <Parameter Name="insId" Type="int" Mode="In" />
+          <Parameter Name="StdId" Type="int" Mode="In" />
           <Parameter Name="numOfTrueFalse" Type="int" Mode="In" />
           <Parameter Name="numOfMCQ" Type="int" Mode="In" />
         </Function>
         <Function Name="GenerateExameByCourseName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Course" Type="varchar" Mode="In" />
+          <Parameter Name="Ins_ID" Type="int" Mode="In" />
+          <Parameter Name="Std_ID" Type="int" Mode="In" />
           <Parameter Name="TFNum" Type="int" Mode="In" />
           <Parameter Name="MCQNum" Type="int" Mode="In" />
         </Function>
@@ -687,6 +686,10 @@
         <Function Name="userSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="varchar" Mode="In" />
           <Parameter Name="star" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Validation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userName" Type="varchar" Mode="In" />
+          <Parameter Name="userPassword" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="examModelStoreContainer">
           <EntitySet Name="Choice" EntityType="Self.Choice" Schema="dbo" store:Type="Tables" />
@@ -1211,10 +1214,6 @@
             <End Role="Course" EntitySet="Courses" />
             <End Role="Instructor" EntitySet="Instructors" />
           </AssociationSet>
-          <FunctionImport Name="checkUser" ReturnType="Collection(String)">
-            <Parameter Name="userName" Mode="In" Type="String" />
-            <Parameter Name="userPassword" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="Course_update">
             <Parameter Name="crs_id" Mode="In" Type="Int32" />
             <Parameter Name="crs_name" Mode="In" Type="String" />
@@ -1295,15 +1294,18 @@
           <FunctionImport Name="examCorrection">
             <Parameter Name="examID" Mode="In" Type="Int32" />
             <Parameter Name="studID" Mode="In" Type="Int32" />
-            <Parameter Name="sum" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="generateExamByCourseID">
             <Parameter Name="cId" Mode="In" Type="Int32" />
+            <Parameter Name="insId" Mode="In" Type="Int32" />
+            <Parameter Name="StdId" Mode="In" Type="Int32" />
             <Parameter Name="numOfTrueFalse" Mode="In" Type="Int32" />
             <Parameter Name="numOfMCQ" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GenerateExameByCourseName">
             <Parameter Name="Course" Mode="In" Type="String" />
+            <Parameter Name="Ins_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Std_ID" Mode="In" Type="Int32" />
             <Parameter Name="TFNum" Mode="In" Type="Int32" />
             <Parameter Name="MCQNum" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1549,6 +1551,10 @@
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="star" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Validation" ReturnType="Collection(String)">
+            <Parameter Name="userName" Mode="In" Type="String" />
+            <Parameter Name="userPassword" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="CourseTopics_Result">
           <Property Type="Int32" Name="Crs_ID" Nullable="false" />
@@ -1563,9 +1569,9 @@
           <Property Type="String" Name="Cho_Content" Nullable="true" MaxLength="200" />
         </ComplexType>
         <ComplexType Name="ReportStudentExamAnswer_Result">
-          <Property Type="String" Name="Ques_Content" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Ques_content" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="Std_Answer" Nullable="true" MaxLength="1" />
-          <Property Type="String" Name="Cho_Content" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Cho_content" Nullable="true" MaxLength="200" />
         </ComplexType>
         <ComplexType Name="retrieveStdByDepID_Result">
           <Property Type="Int32" Name="Std_ID" Nullable="false" />
@@ -1822,7 +1828,6 @@
               <ScalarProperty Name="Ins_ID" ColumnName="Ins_ID" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="checkUser" FunctionName="examModel.Store.checkUser" />
           <FunctionImportMapping FunctionImportName="Course_update" FunctionName="examModel.Store.Course_update" />
           <FunctionImportMapping FunctionImportName="Course_updateTopic" FunctionName="examModel.Store.Course_updateTopic" />
           <FunctionImportMapping FunctionImportName="CourseTopics" FunctionName="examModel.Store.CourseTopics">
@@ -1881,9 +1886,9 @@
           <FunctionImportMapping FunctionImportName="ReportStudentExamAnswer" FunctionName="examModel.Store.ReportStudentExamAnswer">
             <ResultMapping>
               <ComplexTypeMapping TypeName="examModel.ReportStudentExamAnswer_Result">
-                <ScalarProperty Name="Ques_Content" ColumnName="Ques_Content" />
+                <ScalarProperty Name="Ques_content" ColumnName="Ques_content" />
                 <ScalarProperty Name="Std_Answer" ColumnName="Std_Answer" />
-                <ScalarProperty Name="Cho_Content" ColumnName="Cho_Content" />
+                <ScalarProperty Name="Cho_content" ColumnName="Cho_content" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2089,6 +2094,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Validation" FunctionName="examModel.Store.Validation" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

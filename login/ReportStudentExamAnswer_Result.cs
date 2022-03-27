@@ -13,8 +13,8 @@ namespace login
     
     public partial class ReportStudentExamAnswer_Result
     {
-        public string Ques_Content { get; set; }
+        public string Ques_content { get; set; }
         public string Std_Answer { get; set; }
-        public string Cho_Content { get; set; }
+        public string Cho_content { get; set; }
     }
 }

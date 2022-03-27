@@ -138,7 +138,6 @@
         <ScalarProperty Name="Ins_ID" ColumnName="Ins_ID" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="checkUser" FunctionName="examModel.Store.checkUser" />
     <FunctionImportMapping FunctionImportName="Course_update" FunctionName="examModel.Store.Course_update" />
     <FunctionImportMapping FunctionImportName="Course_updateTopic" FunctionName="examModel.Store.Course_updateTopic" />
     <FunctionImportMapping FunctionImportName="CourseTopics" FunctionName="examModel.Store.CourseTopics">
@@ -197,9 +196,9 @@
     <FunctionImportMapping FunctionImportName="ReportStudentExamAnswer" FunctionName="examModel.Store.ReportStudentExamAnswer">
       <ResultMapping>
         <ComplexTypeMapping TypeName="examModel.ReportStudentExamAnswer_Result">
-          <ScalarProperty Name="Ques_Content" ColumnName="Ques_Content" />
+          <ScalarProperty Name="Ques_content" ColumnName="Ques_content" />
           <ScalarProperty Name="Std_Answer" ColumnName="Std_Answer" />
-          <ScalarProperty Name="Cho_Content" ColumnName="Cho_Content" />
+          <ScalarProperty Name="Cho_content" ColumnName="Cho_content" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -405,5 +404,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Validation" FunctionName="examModel.Store.Validation" />
   </EntityContainerMapping>
 </Mapping>

@@ -40,19 +40,6 @@ namespace login
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
     
-        public virtual ObjectResult<string> checkUser(string userName, Nullable<int> userPassword)
-        {
-            var userNameParameter = userName != null ?
-                new ObjectParameter("userName", userName) :
-                new ObjectParameter("userName", typeof(string));
-    
-            var userPasswordParameter = userPassword.HasValue ?
-                new ObjectParameter("userPassword", userPassword) :
-                new ObjectParameter("userPassword", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("checkUser", userNameParameter, userPasswordParameter);
-        }
-    
         public virtual int Course_update(Nullable<int> crs_id, string crs_name, string crsDesc, Nullable<int> crsDur)
         {
             var crs_idParameter = crs_id.HasValue ?
@@ -304,7 +291,7 @@ namespace login
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ExamAnswers", exIdParameter, stIdParameter, num1Parameter, num2Parameter, num3Parameter, num4Parameter, num5Parameter, num6Parameter, num7Parameter, num8Parameter, num9Parameter, num10Parameter);
         }
     
-        public virtual int examCorrection(Nullable<int> examID, Nullable<int> studID, ObjectParameter sum)
+        public virtual int examCorrection(Nullable<int> examID, Nullable<int> studID)
         {
             var examIDParameter = examID.HasValue ?
                 new ObjectParameter("examID", examID) :
@@ -314,14 +301,22 @@ namespace login
                 new ObjectParameter("studID", studID) :
                 new ObjectParameter("studID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("examCorrection", examIDParameter, studIDParameter, sum);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("examCorrection", examIDParameter, studIDParameter);
         }
     
-        public virtual int generateExamByCourseID(Nullable<int> cId, Nullable<int> numOfTrueFalse, Nullable<int> numOfMCQ)
+        public virtual int generateExamByCourseID(Nullable<int> cId, Nullable<int> insId, Nullable<int> stdId, Nullable<int> numOfTrueFalse, Nullable<int> numOfMCQ)
         {
             var cIdParameter = cId.HasValue ?
                 new ObjectParameter("cId", cId) :
                 new ObjectParameter("cId", typeof(int));
+    
+            var insIdParameter = insId.HasValue ?
+                new ObjectParameter("insId", insId) :
+                new ObjectParameter("insId", typeof(int));
+    
+            var stdIdParameter = stdId.HasValue ?
+                new ObjectParameter("StdId", stdId) :
+                new ObjectParameter("StdId", typeof(int));
     
             var numOfTrueFalseParameter = numOfTrueFalse.HasValue ?
                 new ObjectParameter("numOfTrueFalse", numOfTrueFalse) :
@@ -331,14 +326,22 @@ namespace login
                 new ObjectParameter("numOfMCQ", numOfMCQ) :
                 new ObjectParameter("numOfMCQ", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("generateExamByCourseID", cIdParameter, numOfTrueFalseParameter, numOfMCQParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("generateExamByCourseID", cIdParameter, insIdParameter, stdIdParameter, numOfTrueFalseParameter, numOfMCQParameter);
         }
     
-        public virtual int GenerateExameByCourseName(string course, Nullable<int> tFNum, Nullable<int> mCQNum)
+        public virtual int GenerateExameByCourseName(string course, Nullable<int> ins_ID, Nullable<int> std_ID, Nullable<int> tFNum, Nullable<int> mCQNum)
         {
             var courseParameter = course != null ?
                 new ObjectParameter("Course", course) :
                 new ObjectParameter("Course", typeof(string));
+    
+            var ins_IDParameter = ins_ID.HasValue ?
+                new ObjectParameter("Ins_ID", ins_ID) :
+                new ObjectParameter("Ins_ID", typeof(int));
+    
+            var std_IDParameter = std_ID.HasValue ?
+                new ObjectParameter("Std_ID", std_ID) :
+                new ObjectParameter("Std_ID", typeof(int));
     
             var tFNumParameter = tFNum.HasValue ?
                 new ObjectParameter("TFNum", tFNum) :
@@ -348,7 +351,7 @@ namespace login
                 new ObjectParameter("MCQNum", mCQNum) :
                 new ObjectParameter("MCQNum", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GenerateExameByCourseName", courseParameter, tFNumParameter, mCQNumParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GenerateExameByCourseName", courseParameter, ins_IDParameter, std_IDParameter, tFNumParameter, mCQNumParameter);
         }
     
         public virtual ObjectResult<string> inseretQuestion(Nullable<int> id, Nullable<int> crsId, string qContent, Nullable<int> qGrade, string qType, Nullable<int> ans)
@@ -1178,6 +1181,19 @@ namespace login
                 new ObjectParameter("star", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<userSelect_Result>("userSelect", nameParameter, starParameter);
+        }
+    
+        public virtual ObjectResult<string> Validation(string userName, Nullable<int> userPassword)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("userName", userName) :
+                new ObjectParameter("userName", typeof(string));
+    
+            var userPasswordParameter = userPassword.HasValue ?
+                new ObjectParameter("userPassword", userPassword) :
+                new ObjectParameter("userPassword", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Validation", userNameParameter, userPasswordParameter);
         }
     }
 }
